@@ -20,6 +20,7 @@
   "dependencies": {
     "Faker": "~0.7.0",
     "bluebird": "^3.4.1",
+    "fast-sort": "^1.1.10",
     "lodash": "^4.13.1"
   },
   "devDependencies": {
