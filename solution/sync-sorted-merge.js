@@ -1,11 +1,11 @@
 'use strict'
 
-var sort = require('fast-sort');
+const sort = require('fast-sort');
 
 
 module.exports = (logSources, printer) => {
   //declare storage array 'logs'
-  var logs = [];
+  const logs = [];
   //iterate over logSources
   logSources.forEach((source) => {
   //for each logSource's entries
@@ -14,7 +14,7 @@ module.exports = (logSources, printer) => {
   })
 
   //fast-sort array, call sortedLogs
-  let sortedLogs = sort(logs).asc((log) => log.date);
+  const sortedLogs = sort(logs).asc((log) => log.date);
   //for each log in sortedLogs
   sortedLogs.forEach((log) => 
     //print log
