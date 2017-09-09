@@ -2,7 +2,6 @@
 
 const sort = require('fast-sort');
 
-
 module.exports = (logSources, printer) => {
   //declare storage array 'logs'
   const logs = [];
