@@ -3,24 +3,22 @@
 var sort = require('fast-sort');
 
 module.exports = (logSources, printer) => {
-	//create storage variable for promises named 'logs'
-  const logs = [];
-  //iterate over all logSources
-  logSources.forEach((source) => {
-    //store all promises into logs array
-    logs.push(source.popAsync());
+	                                             
+  const logs = [];                             //create storage variable for promises named 'logs'
+                                                
+  logSources.forEach((source) => {             //iterate over all logSources   
+    logs.push(source.popAsync());              //store all promises into logs array
   })
 
-  //Return all promises with passed logs array
-  return Promise.all(logs)
-    .then((entries) => {
-    //sort resolved array
-    const sortedLogs = sort(entries).asc((entry) => entry.date)
-    //for each log from sorted array
-    sortedLogs.forEach((log) => 
-      //print log
-      printer.print(log))      
-      //call printer.done() for stats
-      printer.done()
+  return Promise.all(logs)                    //Return all promises with passed logs array
+    .then((entries) => {    
+    const sortedLogs = sort(entries)          //sort resolved array
+    .asc((entry) => entry.date)   
+    
+
+    sortedLogs.forEach((log) =>               //for each log from sorted array      
+      printer.print(log))                     //print log                  
+      printer.done()                          //call printer.done() for stats
     })
+    
 }

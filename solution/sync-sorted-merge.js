@@ -3,22 +3,18 @@
 const sort = require('fast-sort');
 
 module.exports = (logSources, printer) => {
-  //declare storage array 'logs'
-  const logs = [];
-  //iterate over logSources
-  logSources.forEach((source) => {
-  //for each logSource's entries
-    //push into logs array
-    logs.push(source.pop())
+                                            //declare storage array 'logs'
+  const logs = [];                          //iterate over logSources
+                                                                                          
+  logSources.forEach((source) => {          //for each logSource's entries
+    logs.push(source.pop())                 //push into logs array
   })
+                                            
+  const sortedLogs = sort(logs)             //fast-sort array, call sortedLogs
+  .asc((log) => log.date);
 
-  //fast-sort array, call sortedLogs
-  const sortedLogs = sort(logs).asc((log) => log.date);
-  //for each log in sortedLogs
-  sortedLogs.forEach((log) => 
-    //print log
-    printer.print(log))
-  //call done for stats
-  printer.done()
+  sortedLogs.forEach((log) =>               //for each log in sortedLogs                                            
+    printer.print(log))                     //print log                                            
+    printer.done()                          //call done for stats
 
 }
