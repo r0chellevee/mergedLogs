@@ -7,14 +7,19 @@ module.exports = (logSources, printer) => {
   const logs = [];                          //iterate over logSources
                                                                                           
   logSources.forEach((source) => {          //for each logSource's entries
-    logs.push(source.pop())                 //push into logs array
+     while (!source.drained) {
+       logs.push(source.pop())              //push into logs array
+     }
   })
                                             
   const sortedLogs = sort(logs)             //fast-sort array, call sortedLogs
   .asc((log) => log.date);
 
-  sortedLogs.forEach((log) =>               //for each log in sortedLogs                                            
-    printer.print(log))                     //print log                                            
+  sortedLogs.forEach((log) =>  {             //for each log in sortedLogs
+    if (log !== false) {
+    printer.print(log)                     //print log                                            
+    }
+  })                                 
     printer.done()                          //call done for stats
 
 }
